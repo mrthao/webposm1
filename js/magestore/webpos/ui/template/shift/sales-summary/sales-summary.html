@@ -1,0 +1,60 @@
+<!--
+  ~ Magestore
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Magestore.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ http://www.magestore.com/license-agreement.html
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category    Magestore
+  ~ @package     Magestore_Webpos
+  ~ @copyright   Copyright (c) 2016 Magestore (http://www.magestore.com/)
+  ~ @license     http://www.magestore.com/license-agreement.html
+  -->
+
+<div class="sum-info-top">
+    <div class="life-time-left">
+        <span class="price" data-bind="i18n: 'Balance'"></span>
+        <span class="price balance" data-bind="text: convertAndFormatPrice(cashDrawerData().base_balance)"></span>
+    </div>
+</div>
+<div id="shift-detail-sale" data-bind="visible: hasData">
+    <table class="table">
+        <thead>
+        <tr>
+            <th><span data-bind="i18n:'Sales By Payments'"/></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <!-- html for one item of sale summary -->
+
+        <!-- ko foreach: items -->
+
+        <tr>
+
+            <td class="a-left">
+                <div class="credit-card-payment">
+                    <div class="icon-payment cash"><span data-bind="attr:{'class': $parent.generatePaymentCode(payment_method)}"></span></div>
+                    <label data-bind="text: method_title"/>
+                </div>
+
+            </td>
+            <td><span data-bind="text: $parent.convertAndFormatPrice(base_payment_amount)"/></td>
+
+        </tr>
+        <!-- /ko -->
+
+        <!-- end of html for one item of sale summary -->
+
+        </tbody>
+    </table>
+</div>
+

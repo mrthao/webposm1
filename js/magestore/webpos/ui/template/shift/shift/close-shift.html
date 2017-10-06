@@ -1,0 +1,75 @@
+<!--
+  ~ Magestore
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Magestore.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ http://www.magestore.com/license-agreement.html
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category    Magestore
+  ~ @package     Magestore_Webpos
+  ~ @copyright   Copyright (c) 2016 Magestore (http://www.magestore.com/)
+  ~ @license     http://www.magestore.com/license-agreement.html
+  -->
+
+<div id="popup-close-shift" class="hide-popup popup-for-right">
+    <div class="wrap-popup">
+        <div class="popup-header">
+            <button type="button" class="button cancel" data-bind="click: closeForm"><span data-bind="i18n:'Cancel'"/></button>
+            <label class="title-box"><span data-bind="i18n:'Close store'"/></label>
+            <button type="submit" class="button btn-done" data-bind="click: closeShift"><span class="link-cl-cfg" data-bind="i18n:'Done'"/></button>
+        </div>
+        <div class="modal-body">
+            <label class="cash-drawer"><span data-bind="i18n:'There should be'"/> <b><span data-bind="text: balance"/></b> <span data-bind="i18n:'in your cash drawer'"/></label>
+            <div class="amount-box">
+                <div class="input-box">
+                    <label><span data-bind="i18n:'Cash Counted'"/></label>
+                    <input type="text" data-bind="textInput: closedAmountFormatted, event:{change: closedAmountChange}"  onfocus="this.select()">
+                </div>
+                <div class="input-box">
+                    <label><span data-bind="i18n:'Cash Left'"/></label>
+                    <input type="text" data-bind="textInput: cashLeftFormatted, event:{change: cashLeftChange}"  onfocus="this.select()">
+                </div>
+                <div>
+                    <span class="error_message" data-bind="text: cashLeftErrorMessage"/>
+                </div>
+                <textarea class="note" placeholder="Note" data-bind="value: closed_note"></textarea>
+            </div>
+            <div class="staff-name"><span data-bind="text:staffName"/> </div>
+        </div>
+    </div>
+    <div id='count_cash_area'data-bind="visible: (getDenominations().length > 0)">
+        <div class="wrap-popup">
+            <div class="popup-header">
+                <button type="button" class="button cancel"><span data-bind="i18n:'Clear', click:clearDenominationQty"/></button>
+                <label class="title-box"><span data-bind="i18n:'Cash Counting'"/></label>
+                <button class="button btn-done"><span class="link-cl-cfg"/></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class='note-value' colspan="2" data-bind="i18n:'Note Value'"></th>
+                            <th class='note-count text-center' data-bind="i18n:'Count'"></th>
+                            <th class='note-sum text-center' data-bind="i18n:'Sum'"></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: denominations">
+                        <tr>
+                            <td data-bind="text:name" class="deno-name"></td>
+                            <td data-bind="text:value_formated" class="deno-value"></td>
+                            <td><input data-bind="value:qty, event:{change:$parent.denoQtyChange.bind($parent)}" type="text" class="form-control count_value text-center" onfocus="this.select()"/></td>
+                            <td data-bind="text:total_formated" class="text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

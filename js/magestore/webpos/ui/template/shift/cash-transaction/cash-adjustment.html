@@ -1,0 +1,48 @@
+
+<!--
+  ~ Magestore
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Magestore.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ http://www.magestore.com/license-agreement.html
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category    Magestore
+  ~ @package     Magestore_Webpos
+  ~ @copyright   Copyright (c) 2016 Magestore (http://www.magestore.com/)
+  ~ @license     http://www.magestore.com/license-agreement.html
+  -->
+
+<div id="popup-make-adjustment" class="hide-popup popup-for-right">
+    <div class="wrap-popup">
+        <div class="popup-header">
+            <button type="button" class="button cancel" data-bind="click: closeForm"><span data-bind="i18n:'Cancel'"/></button>
+            <label class="title-box"><span data-bind="i18n:'Make adjustment'"/></label>
+            <button type="button" class="button btn-done" data-bind="click: createCashAdjustment"><span class="link-cl-cfg" data-bind="i18n:'Done'"/></button>
+        </div>
+        <div class="modal-body">
+            <label class="cash-drawer"><span data-bind="i18n:'The current balance of your cash drawer'"/>: <b><span data-bind="text: balanceFormatted"/></b></label>
+            <div class="actions">
+                <button type="button" class="cash_adjustment_active" data-bind="click: addCash, attr:{'class': add_cash_class}"><span data-bind="i18n:'Cash In'"/></button>
+                <button type="button" class="cash_adjustment_inactive" data-bind="click: removeCash, attr:{'class': remove_cash_class}"><span data-bind="i18n:'Cash Out'"/></button>
+            </div>
+            <div class="amount-box">
+                <div class="input-box">
+                    <label><span data-bind="i18n:'Amount'"/></label>
+                    <input type="text" data-bind="textInput: valueFormatted, event:{change: valueChange}"  onfocus="this.select()">
+                </div>
+                <div>
+                    <span class="error_message" data-bind="text: valueErrorMessage"/>
+                </div>
+                <textarea class="note" placeholder="Note" data-bind="value: note"></textarea>
+            </div>
+            <div class="staff-name"><span data-bind="text:staffName"/> </div>
+        </div>
+    </div>
+</div>

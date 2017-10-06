@@ -1,0 +1,138 @@
+<!--
+  ~ Magestore
+  ~
+  ~ NOTICE OF LICENSE
+  ~
+  ~ This source file is subject to the Magestore.com license that is
+  ~ available through the world-wide-web at this URL:
+  ~ http://www.magestore.com/license-agreement.html
+  ~
+  ~ DISCLAIMER
+  ~
+  ~ Do not edit or add to this file if you wish to upgrade this extension to newer
+  ~ version in the future.
+  ~
+  ~ @category    Magestore
+  ~ @package     Magestore_Webpos
+  ~ @copyright   Copyright (c) 2016 Magestore (http://www.magestore.com/)
+  ~ @license     http://www.magestore.com/license-agreement.html
+  -->
+
+<div id="shift_container" data-bind="css: { 'shift-empty': (!isEnable()) }">
+    <div class="wrap-shift_container">
+        <!-- ko if: isEnable() -->
+        <!-- start html content for shift listing -->
+        <div class="col-sm-4 col-right">
+            <header class="o-header">
+                <nav class="o-header-nav">
+                    <span></span>
+                    <label class="title title-header-page"><span data-bind="i18n:'Cash drawer'"/></label>
+                    <div class="icon-add">
+                        <span class="icon-iconPOS-synchronize" data-bind="visible:canSwitchCashDrawer, click:switchCashDrawer"/>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="main-item-shift main-shift">
+                <div class="wrap-item-shift">
+                    <div class="title-time time-one"><span data-bind="i18n:'Cash Transactions'"/></div>
+                    <ul class="list-shifts">
+                        <!-- html content for one shift listing item -->
+
+                        <!-- ko foreach: items -->
+                        <li class="shift-item bg-cl-active">
+                            <div class="item">
+                                <div class="date-time">
+                                    <span class="day-month" data-bind="text: $parent.getDateOnly(created_at)"/>
+                                    <span class="type"  data-bind="text: $parent.getTimeOnly(created_at)"/>
+                                    - #<span data-bind="text: order_increment_id, visible:(order_increment_id != 0)"/><span data-bind="i18n: 'Manual', visible: (order_increment_id == 0)"/>
+                                    <br/><span data-bind="text: note"/>
+                                </div>
+                                <div class="price-date">
+                                   <span class="price" data-bind="text: $parent.formatTransactionPrice(amount, $data)"/>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- /ko -->
+
+                        <!-- end html content for one shift listing item -->
+
+                        <!-- ko ifnot: items().length -->
+                        <li class="shift-item bg-cl-active">
+                            <span class="item" data-bind="i18n:'No Transaction'"></span>
+                        </li>
+                        <!-- /ko -->
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- end htl content for shift listing -->
+
+        <!-- start html content for shift detail -->
+
+                <!-- ko foreach: getRegion('shift-detail') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+
+        <!-- end html content for shift detail -->
+
+        <!-- /ko-->
+
+        <!-- start html for empty shift-->
+
+        <!-- ko ifnot: isEnable() -->
+        <div class="col-sm-4 col-lg-3 col-right">
+            <header class="o-header">
+                <nav class="o-header-nav">
+                    <span></span>
+                    <label class="title title-header-page"><span data-bind="i18n:'Cash drawer'"/></label>
+                    <div class="icon-add" >
+                        <span class=""/>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="main-item-shift main-shift">
+                <div class="wrap-item-shift">
+                    <div class="title-time time-one"><span data-bind="i18n:'Cash Transactions'"/></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-8 col-lg-9 col-left">
+            <header class="o-header">
+                <nav class="o-header-nav">
+                    <div class="detail-datetime"><label class=""><span data-bind="i18n:'Cash Transactions'"/></label> </div>
+                </nav>
+            </header>
+            <main class="main-content">
+                <div class="pos-machine"><span class="icon-iconPOS-empty-shift"></span></div>
+                <div class="text-note">
+                    <h3 class="title-box"><span data-bind="i18n:'Manage your daily cash flow'"/> </h3>
+                    <span class="small-text"><span data-bind="i18n:'Balance your cash drawer and keep track of how much your sell each shift'"/></span>
+                </div>
+            </main>
+        </div>
+        <!-- /ko-->
+
+        <!-- end html for empty shift-->
+
+
+
+
+        <!-- start html content for shift detail -->
+
+            <!-- ko foreach: getRegion('open-shift') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+
+        <!-- end html content for shift detail -->
+
+        <div class="wrap-backover hide-popup"></div>
+    </div>
+</div>
