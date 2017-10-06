@@ -38,7 +38,7 @@ define(
                     ItemInterface.SUPER_ATTRIBUTE,ItemInterface.SUPER_GROUP,ItemInterface.OPTIONS,ItemInterface.BUNDLE_OPTION,ItemInterface.BUNDLE_OPTION_QTY,ItemInterface.IS_OUT_OF_STOCK,ItemInterface.ROW_TOTAL,
                     ItemInterface.TAX_CLASS_ID,ItemInterface.IS_VIRTUAL, ItemInterface.QTY_TO_SHIP, ItemInterface.TAX_AMOUNT, ItemInterface.TAX_RATES,ItemInterface.ITEM_BASE_DISCOUNT_AMOUNT,
                     ItemInterface.ITEM_DISCOUNT_AMOUNT, ItemInterface.ITEM_BASE_CREDIT_AMOUNT, ItemInterface.ITEM_CREDIT_AMOUNT, ItemInterface.ONLINE_BASE_TAX_AMOUNT, ItemInterface.HAS_ERROR, ItemInterface.GROUP_PRICES,
-                    ItemInterface.TAX_ORIGIN_RATE, ItemInterface.TAX_AMOUNT_BEFORE_DISCOUNT, ItemInterface.GROUP_PRICE
+                    ItemInterface.TAX_ORIGIN_RATE, ItemInterface.TAX_AMOUNT_BEFORE_DISCOUNT, ItemInterface.GROUP_PRICE, ItemInterface.COMMENT // Abel edit
                 ];
 
                 /* S: Define the init fields - use to get data for item object */
@@ -49,7 +49,7 @@ define(
                     ItemInterface.TAX_CLASS_ID,ItemInterface.IS_VIRTUAL, ItemInterface.QTY_TO_SHIP, ItemInterface.TAX_RATES, ItemInterface.SKU, ItemInterface.PRODUCT_TYPE, ItemInterface.CHILD_ID,
                     ItemInterface.OPTIONS_LABEL, ItemInterface.STOCKS, ItemInterface.STOCK,ItemInterface.ID,ItemInterface.TYPE_ID,ItemInterface.BUNDLE_CHILDS_QTY,ItemInterface.ITEM_BASE_DISCOUNT_AMOUNT,
                     ItemInterface.ITEM_DISCOUNT_AMOUNT, ItemInterface.SAVED_ONLINE_ITEM, ItemInterface.ONLINE_BASE_TAX_AMOUNT, ItemInterface.HAS_ERROR, ItemInterface.GROUP_PRICES,
-                    ItemInterface.TAX_ORIGIN_RATE, ItemInterface.TAX_AMOUNT_BEFORE_DISCOUNT, ItemInterface.GROUP_PRICE
+                    ItemInterface.TAX_ORIGIN_RATE, ItemInterface.TAX_AMOUNT_BEFORE_DISCOUNT, ItemInterface.GROUP_PRICE, ItemInterface.COMMENT // Abel edit
                 ];
                 if(Helper.isStoreCreditEnable()) {
                     this.initFields.push(ItemInterface.CREDIT_AMOUNT);
@@ -72,6 +72,7 @@ define(
             init: function(data){
                 var self = this;
                 self[ItemInterface.ID] = (typeof data[ItemInterface.ID] != "undefined")?ko.observable(data[ItemInterface.ID]):ko.observable();
+                self[ItemInterface.COMMENT] = (typeof data[ItemInterface.COMMENT] != "undefined")?ko.observable(data[ItemInterface.COMMENT]):ko.observable(''); // Abel edit: init comment item
                 self[ItemInterface.PRODUCT_ID] = (typeof data[ItemInterface.PRODUCT_ID] != "undefined")?ko.observable(data[ItemInterface.PRODUCT_ID]):ko.observable();
                 self[ItemInterface.PRODUCT_NAME] = (typeof data[ItemInterface.PRODUCT_NAME] != "undefined")?ko.observable(data[ItemInterface.PRODUCT_NAME]):ko.observable();
                 self[ItemInterface.TYPE_ID] = (typeof data[ItemInterface.TYPE_ID] != "undefined")?ko.observable(data[ItemInterface.TYPE_ID]):ko.observable();
@@ -451,6 +452,7 @@ define(
                 infobuy.id = self[ItemInterface.PRODUCT_ID]();
                 infobuy.qty = self[ItemInterface.QTY]();
                 infobuy.qty_to_ship = self[ItemInterface.QTY_TO_SHIP]();
+                infobuy.comment = self[ItemInterface.COMMENT](); // Abel edit: add comment to info
                 infobuy.use_discount = Helper.isOnlineCheckout()?1:0;
 
                 if(self[ItemInterface.PRODUCT_ID]() == "customsale"){
@@ -601,6 +603,7 @@ define(
                 var data = {
                     item_id:self[ItemInterface.ITEM_ID](),
                     name:self[ItemInterface.PRODUCT_NAME](),
+                    comment:self[ItemInterface.COMMENT](), // Abel edit: add comment to order
                     product_id:self[ItemInterface.PRODUCT_ID](),
                     product_type:self[ItemInterface.PRODUCT_TYPE](),
                     sku:self[ItemInterface.SKU](),

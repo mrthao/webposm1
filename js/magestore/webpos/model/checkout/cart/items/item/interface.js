@@ -87,6 +87,7 @@ define(
             CUSTOM_DISCOUNT_CODE: "discount",
             FIXED_AMOUNT_CODE: "$",
             PERCENTAGE_CODE: "%",
+            COMMENT: "comment", // Abel edit: add comment to get item data
             APPLY_TAX_ON_CUSTOMPRICE: "0",
             APPLY_TAX_ON_ORIGINALPRICE: "1"
         };

@@ -84,6 +84,14 @@ define(
                 }
                 EditPopupModel.setData('qty',HelperPrice.toNumber(qty));
             },
+            // Abel edit: add comment to cart popup detail
+            getComment: function () {
+                return EditPopupModel.getData('comment');
+            },
+            modifyComment: function(data,event) {
+                EditPopupModel.setData('comment', event.target.value);
+            },
+            // Abel edit: end
             getProductName: function(){
                 return EditPopupModel.getData('product_name');
             },

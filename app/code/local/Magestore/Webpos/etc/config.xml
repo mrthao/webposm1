@@ -21,7 +21,7 @@
 <config>
     <modules>
         <Magestore_Webpos>
-            <version>3.0.5</version>
+            <version>3.0.5</version> <!-- keep current version -->
         </Magestore_Webpos>
     </modules>
     <frontend>

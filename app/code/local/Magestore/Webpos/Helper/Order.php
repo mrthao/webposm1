@@ -82,6 +82,7 @@ class Magestore_Webpos_Helper_Order extends Mage_Core_Helper_Abstract {
             $orderData[$i]['tax_percent'] =(float) $item->getData('tax_percent');
             $orderData[$i]['updated_at'] = $item->getData('updated_at');
             $orderData[$i]['order_id'] = $order->getId();
+            $orderData[$i]['comment'] = $item->getData('comment'); // Abel edit: add comment to order item return after place order
             $i++;
         }
         $order->setData('items', $orderData);

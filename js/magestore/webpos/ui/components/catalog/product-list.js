@@ -450,6 +450,17 @@ define([
         },
 
         showPopupOptions: function (item, style, event) {
+            // Abel edit: begin
+            ko.utils.arrayForEach(CartModel.getItemsInfo(), function(item1) {
+                if(item1.id === item.entity_id) {
+                    if(typeof item1.comment !== 'undefined') {
+                        item.comment = item1.comment;
+                    } else {
+                        item.comment = '';
+                    }
+                }
+            });
+            // Abel edit: end
             if (generalHelper.isOnlineCheckout() && item.options == 1) {
                 var productModel = ProductFactory.get();
 

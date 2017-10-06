@@ -312,6 +312,17 @@ class Magestore_Webpos_Service_Checkout_Checkout extends Magestore_Webpos_Servic
                 ->setIsValidate(true)
                 ->createOrder();
             if($order && $order->getId()){
+                // Abel edit: add comment to order item
+                $items = $order->getAllVisibleItems();
+                if (count($items) > 0) {
+                    foreach ($items as $item) {
+                        $buyRequest = $item->getBuyRequest()->getData();
+                        if (isset($buyRequest['comment'])) {
+                            $item->setData('comment', $buyRequest['comment']);
+                        }
+                    }
+                }
+                // Abel edit: end
                 $orderCreateModel->processPaymentAfterCreateOrder($order, $payment);
                 $orderCreateModel->processActionsAfterCreateOrder($order, $actions);
                 $orderCreateModel->processIntegration($order, $integration);

@@ -46,6 +46,16 @@
                     <button id="bt_inc_qty" type="button" class="btn btn-warning" data-bind="click:incQty">+</button>
                 </div>
             </div>
+            <!-- Abel edit: add comment field -->
+            <div class="product_comment" style="margin: 10px 0;">
+                <div>
+                    <span data-bind="i18n: 'Comment: '"></span>
+                </div>
+                <div>
+                    <input id="editpopup_product_comment" style="width: 100%" data-bind="textInput:getComment(),event:{change:modifyComment}"/>
+                </div>
+            </div>
+            <!-- Abel edit: end -->
             <div class="actions">
                 <!--ko if:canAddCustomPrice()-->
                 <button type="button" class="custom-price" data-bind="click:customPrice,css:{'btn-cl-cfg-active':isCustomPrice},i18n:'Custom Price'"></button>

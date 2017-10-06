@@ -38,6 +38,14 @@
                     <!-- ko if: $data.options_label -->
                     <div class="item-options" data-bind="text:options_label"></div>
                     <!--/ko-->
+                    <!-- Abel edit: show comment on cart -->
+                    <!-- ko if: $data.comment -->
+                    <div>
+                        <span data-bind="i18n: 'Comment: '"></span>
+                        <span class="item-comment" data-bind="text:comment"></span>
+                    </div>
+                    <!--/ko-->
+                    <!-- Abel edit: end -->
                 </div>
                 <div class="price-box">
                     <span class="price" data-bind="text:row_total_formated"></span>

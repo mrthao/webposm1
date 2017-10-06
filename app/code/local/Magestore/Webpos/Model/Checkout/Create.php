@@ -330,6 +330,7 @@ class Magestore_Webpos_Model_Checkout_Create extends Mage_Adminhtml_Model_Sales_
                 Mage::throwException($item);
             }
         }
+        $item->setComment($config->getComment()); // Abel edit: add comment to quote item
         $item->checkData();
         if ($config->getData(Magestore_Webpos_Api_Cart_BuyRequestInterface::CUSTOM_PRICE)) {
             $customPrice = $config->getData(Magestore_Webpos_Api_Cart_BuyRequestInterface::CUSTOM_PRICE);
@@ -453,6 +454,7 @@ class Magestore_Webpos_Model_Checkout_Create extends Mage_Adminhtml_Model_Sales_
                 $product[Magestore_Webpos_Api_Cart_BuyRequestInterface::EXTENSION_DATA] = $item->getExtensionData();
                 $product[Magestore_Webpos_Api_Cart_BuyRequestInterface::CUSTOMERCREDIT_AMOUNT] = $item->getAmount();
                 $product[Magestore_Webpos_Api_Cart_BuyRequestInterface::CUSTOMERCREDIT_PRICE_AMOUNT] = $item->getCreditPriceAmount();
+                $product['comment'] = $item->getComment(); // Abel edit: add comment to order item
                 if ($item->getIsCustomSale()) {
                     $options = $item->getOptions();
                     $taxClassId = isset($options['tax_class_id']) ? $options['tax_class_id'] : '';
@@ -735,6 +737,11 @@ class Magestore_Webpos_Model_Checkout_Create extends Mage_Adminhtml_Model_Sales_
                             $item->setData($data[Magestore_Webpos_Api_Checkout_ExtensionDataInterface::FIELD_KEY], $data[Magestore_Webpos_Api_Checkout_ExtensionDataInterface::FIELD_VALUE]);
                         }
                     }
+                    // Abel edit: add comment to order item
+                    if (isset($buyRequest['comment'])) {
+                        $item->setData('comment', $buyRequest['comment']);
+                    }
+                    // Abel edit: end
                 }
             }
             if (count($extensionData) > 0) {

@@ -126,6 +126,11 @@ define(
                     infoBuyRequest.amount = product.final_price;
                 }
                 infoBuyRequest.productObject = this.data;
+                // Abel edit: add comment
+                if(typeof product.comment !== 'undefined'){
+                    infoBuyRequest.comment = product.comment;
+                }
+                // Abel edit: end
                 return infoBuyRequest;
             },
             /**

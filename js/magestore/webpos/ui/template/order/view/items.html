@@ -31,6 +31,7 @@
                     <col width="">
                     <col width="">
                     <col width="">
+                    <col width=""> <!-- Abel edit: add comment to order detail -->
                 </colgroup>
                 <thead>
                     <tr>
@@ -43,6 +44,7 @@
                         <th data-bind="i18n: ('Tax Amount')"/>
                         <th data-bind="i18n: ('Discount Amount')"/>
                         <th data-bind="i18n: ('Row Total')"/>
+                        <th data-bind="i18n: ('Comment')"/> <!-- Abel edit: add comment to order detail -->
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: {data: $parent.orderData().items, as: 'item'}">
@@ -78,6 +80,7 @@
                             item.base_discount_amount?item.base_discount_amount:0)"/>
                         <td class="price" data-bind="text: $parents[1].convertAndFormatPrice(
                             item.base_row_total+item.base_tax_amount-item.base_discount_amount)"/>
+                        <td class="product-name" data-bind="text: item.comment"/> <!-- Abel edit: add comment to order detail -->
                     </tr>
                     <!-- /ko -->
                 </tbody>

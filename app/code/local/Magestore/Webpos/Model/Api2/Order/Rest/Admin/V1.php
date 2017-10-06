@@ -134,6 +134,7 @@ class Magestore_Webpos_Model_Api2_Order_Rest_Admin_V1 extends Magestore_Webpos_M
                 $orderedProductIds[$i]['tax_percent'] =(float) $item->getData('tax_percent');
                 $orderedProductIds[$i]['updated_at'] = $item->getData('updated_at');
                 $orderedProductIds[$i]['order_id'] = $order->getId();
+                $orderedProductIds[$i]['comment'] = $item->getData('comment'); // Abel edit: add comment
                 $i++;
             }
             $billingAddress = $order->getBillingAddress();

@@ -82,6 +82,7 @@ define(
                     var qty = item[ItemInterface.QTY]();
                     qty += data.qty;
                     this.setItemData(item[ItemInterface.ITEM_ID](), "qty", qty);
+                    this.setItemData(item[ItemInterface.ITEM_ID](), "comment", data.comment); // Abel edit: update comment
                 }
             },
             getItem: function(itemId){

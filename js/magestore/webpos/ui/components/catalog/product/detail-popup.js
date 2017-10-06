@@ -211,6 +211,7 @@ define(
                     var product = self.getProductData();
                     var stocks = product.stocks;
                     if (product.super_group && product.super_group.length > 0) {
+                        var commentItem = product.comment; // Abel edit
                         ko.utils.arrayForEach(product.super_group, function (product) {
                             if (product.id) {
                                 for(var i in stocks) {
@@ -219,6 +220,7 @@ define(
                                         break;
                                     }
                                 }
+                                product.comment = commentItem; // Abel edit: add comment foreach item group
                                 ProductModel.data = product;
                                 product.unit_price = ProductModel.getFinalPrice();
                                 self.addProduct(product);
