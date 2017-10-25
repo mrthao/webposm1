@@ -21,7 +21,7 @@
 <config>
     <modules>
         <Magestore_Webpos>
-            <version>3.0.5</version> <!-- keep current version -->
+            <version>3.0.6</version>
         </Magestore_Webpos>
     </modules>
     <frontend>
@@ -182,6 +182,11 @@
                     <stock_item>Magestore_Webpos_Model_Stock_Item</stock_item>
                 </rewrite>
             </cataloginventory>
+			<checkout>
+                <rewrite>
+                    <cart>Magestore_Webpos_Model_Cart</cart>
+                </rewrite>
+            </checkout>
         </models>
         <events>
             <payment_method_is_active>
@@ -269,6 +274,15 @@
                     </webpos_observer_general>
                 </observers>
             </webpos_refund_by_cash_after>
+            <webpos_start_process_payment>
+                <observers>
+                    <webpos_start_process_payment>
+                        <type>singleton</type>
+                        <class>webpos/observer_integration_webposStartProcessPayment</class>
+                        <method>execute</method>
+                    </webpos_start_process_payment>
+                </observers>
+            </webpos_start_process_payment>
             <inventorysuccess_new_order_warehouse>
                 <observers>
                     <webpos_inventorysuccess_new_order_warehouse>
@@ -394,6 +408,16 @@
                     <to_order>*</to_order>
                 </webpos_till_id>
             </sales_convert_quote>
+			<sales_convert_quote_item>
+                <comment>
+                    <to_order_item>*</to_order_item>
+                </comment>
+            </sales_convert_quote_item>
+            <sales_convert_order_item>
+                <comment>
+                    <to_quote_item>*</to_quote_item>
+                </comment>
+            </sales_convert_order_item>
         </fieldsets>
         <catalog>
             <product>

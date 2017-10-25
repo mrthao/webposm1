@@ -25,6 +25,7 @@
             <block type="page/html_head" name="webpos_head" as="webpos_head" template="webpos/head.phtml">
                 <action method="addJs"><script>prototype/prototype.js</script></action>
                 <action method="addJs"><script>mage/translate.js</script></action>
+                <action method="addJs"><script>clever/bonprinter/bonprinter.js</script></action>
                 <action method="addJs"><script>magestore/webpos/require.js</script></action>
             </block>
             <block type="core/template" name="requirejs" as="requirejs" template="webpos/requirejs.phtml" />
@@ -559,6 +560,16 @@
                                     <component>ui/components/menu</component>
                                     <displayArea>webpos.menu</displayArea>
                                     <children>
+                                    	<!-- Francy Add -->
+                                    	<webpos_change_staff>
+                                            <component>ui/components/staff/change-staff</component>
+                                            <displayArea>webpos_change_staff</displayArea>
+                                        </webpos_change_staff>
+                                        <webpos_verify_account>
+                                            <component>ui/components/staff/verify-account</component>
+                                            <displayArea>webpos_verify_account</displayArea>
+                                        </webpos_verify_account>
+                                        <!-- End -->
                                         <order>
                                             <component>ui/components/menu/group</component>
                                             <sortOrder>0</sortOrder>
@@ -695,4 +706,31 @@
             <block type="core/text_list" name="before_webpos_body_end" as="before_webpos_body_end" />
         </block>
     </webpos_index_index>
+	<checkout_cart_index translate="label">
+            <reference name="checkout.cart">
+                <!--
+                <action method="setCartTemplate">
+                    <value>cartcomment/checkout/cart.phtml</value>
+                </action>
+                -->
+                <action method="setTemplate">
+                    <value>cartcomment/checkout/cart.phtml</value>
+                </action>
+                <action method="addItemRender">
+                    <type>simple</type>
+                    <block>checkout/cart_item_renderer</block>
+                    <template>cartcomment/checkout/cart/item/default.phtml</template>
+                </action>
+                <action method="addItemRender">
+                    <type>grouped</type>
+                    <block>checkout/cart_item_renderer_grouped</block>
+                    <template>cartcomment/checkout/cart/item/default.phtml</template>
+                </action>
+                <action method="addItemRender">
+                    <type>configurable</type>
+                    <block>checkout/cart_item_renderer_configurable</block>
+                    <template>cartcomment/checkout/cart/item/default.phtml</template>
+                </action>
+        </reference>
+    </checkout_cart_index>
 </layout>
